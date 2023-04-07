@@ -3,7 +3,7 @@ import Page from "./Page"
 
 function Home() {
   return (
-    <Page>
+    <Page title="Home">
       <h2 className="text-center">
         Hello <strong>{localStorage.getItem("ReactAppUsername")}</strong>, your feed is empty.
       </h2>
