@@ -16,6 +16,7 @@ import ViewSinglePost from "./components/ViewSinglePost"
 import FlashMessages from "./components/FlashMessages"
 import DispatchContext from "./DispatchContext"
 import StateContext from "./StateContext"
+import { useImmer, useImmerReducer } from "use-immer"
 
 function MainComponent() {
   const initialState = {
@@ -23,18 +24,21 @@ function MainComponent() {
     flashMessages: []
   }
 
-  function appReducer(state, action) {
+  function appReducer(draft, action) {
     switch (action.type) {
       case "login":
-        return { loggedIn: false, flashMessages: state.flashMessages }
+        draft.loggedIn = true
+        return
       case "logout":
-        return { loggedIn: true, flashMessages: state.flashMessages }
+        draft.loggedIn = false
+        return
       case "flashMessage":
-        return { loggedIn: state.loggedIn, flashMessages: state.flashMessages.concat(action.value) }
+        draft.flashMessages.push(action.value)
+        return
     }
   }
 
-  const [state, dispatch] = useReducer(appReducer, initialState)
+  const [state, dispatch] = useImmerReducer(appReducer, initialState)
 
   /*  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("ReactAppToken")))
   const [flashMessages, setFlashMessages] = useState([])

@@ -8,7 +8,7 @@ function CreatePost(props) {
   const [title, setTitle] = useState()
   const [body, setBody] = useState()
   const navigate = useNavigate()
-  const { appDispatch } = useContext(DispatchContext)
+  const appDispatch = useContext(DispatchContext)
   //const addFlashMessage = useContext(MainContext)
 
   async function handleSubmit(e) {

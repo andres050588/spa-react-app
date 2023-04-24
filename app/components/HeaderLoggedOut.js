@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from "react"
 import DispatchContext from "../DispatchContext"
 
 function HeaderLoggedOut(props) {
-  const { appDispatch } = useContext(DispatchContext)
+  const appDispatch = useContext(DispatchContext)
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
 
@@ -15,7 +15,7 @@ function HeaderLoggedOut(props) {
         localStorage.setItem("ReactAppToken", response.data.token)
         localStorage.setItem("ReactAppUsername", response.data.username)
         localStorage.setItem("ReactAppAvatar", response.data.avatar)
-        appDispatch("login")
+        appDispatch({ type: "login" })
       } else {
         console.log("There was an incorect username or password")
       }

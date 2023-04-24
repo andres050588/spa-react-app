@@ -3,10 +3,10 @@ import { Link } from "react-router-dom"
 import DispatchContext from "../DispatchContext"
 
 function HeaderLoggedIn(props) {
-  const { appDispatch } = useContext(DispatchContext)
+  const appDispatch = useContext(DispatchContext)
 
   function handleLogOut() {
-    appDispatch("logout")
+    appDispatch({ type: "logout" })
     localStorage.removeItem("ReactAppToken")
     localStorage.removeItem("ReactAppEmail")
     localStorage.removeItem("ReactAppAvatar")
